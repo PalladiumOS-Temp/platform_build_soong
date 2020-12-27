@@ -139,6 +139,7 @@ func dumpMakeVars(ctx Context, config Config, goals, vars []string, write_soong_
 var BannerVars = []string{
 	"PLATFORM_VERSION_CODENAME",
 	"PLATFORM_VERSION",
+	"PALLADIUM_VERSION",
 	"TARGET_PRODUCT",
 	"TARGET_BUILD_VARIANT",
 	"TARGET_BUILD_TYPE",
@@ -162,19 +163,24 @@ var BannerVars = []string{
 	"AUX_OS_VARIANT_LIST",
 	"TARGET_BUILD_PDK",
 	"PDK_FUSION_PLATFORM_ZIP",
+	"TARGET_GCC_VERSION",
 	"PRODUCT_SOONG_NAMESPACES",
 }
 
 func Banner(make_vars map[string]string) string {
 	b := &bytes.Buffer{}
 
-	fmt.Fprintln(b, "============================================")
+	fmt.Fprintln(b, "===========================================================")
+	fmt.Fprintln(b, "                                                           ")
+	fmt.Fprintln(b, "        Welcome to Palladium OS Build Environment          ")
+	fmt.Fprintln(b, "                                                           ")  
+	fmt.Fprintln(b, "===========================================================")
 	for _, name := range BannerVars {
 		if make_vars[name] != "" {
 			fmt.Fprintf(b, "%s=%s\n", name, make_vars[name])
 		}
 	}
-	fmt.Fprint(b, "============================================")
+	fmt.Fprint(b, "=============================================================")
 
 	return b.String()
 }
